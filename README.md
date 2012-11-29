@@ -9,7 +9,7 @@ Exercise 4 for CSE 403 quiz section.
 The following URL validation design is a modified form of my team (https://github.com/caylan/403Section/wiki/URL-Validation) design. My implementation differences are noted. The code implementation itself if a modified version of the team's url sorting code to handle the specifications of this exercise.
 
 URL Validation
-- The URL sorter works fine with sorting strings, but the algorithms have no way of telling whether the strings being sorted are valid URLs. Our URL validator should help address that issue. The choices made for URL validation and normalization were for the sake of time reduction (finding code that's already been written to address our needs) and tailoring it to our own use.
+- The URL will be checked by a regex to see if it is valid or not.
 
 Specifying a definition for a valid URL
 - We will be following the definition provided by http://www.ietf.org/rfc/rfc3986.txt to validate off of the RFC 3986 Reg-ex, where a URL is defined as having the general form: scheme://netloc/path;parameters?query#fragment.

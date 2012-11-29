@@ -2,7 +2,13 @@
 """
 Usage: url_validator.py -f [FILE]
 
-https://github.com/scrapy/scrapy
+This program will read from a file of a list of URLs and displays in read order: 
+o	the source URL
+o	a boolean that says whether or not the URL is valid
+o	the canonical URL
+o	a boolean that says whether or not the source URL is unique
+o	a boolean that says whether or the canonicalized URL is unique
+
 """
 
 import optparse

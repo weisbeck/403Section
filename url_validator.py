@@ -67,7 +67,7 @@ def canonicalizer(url):
 def comparator(url1, url2):
     """
     Since each URL is a string, will just use the built in comparator for strings.
-    Returns -1 if 1 < 2, 1 if 1 > 2, and 0 if they are equal
+    Returns -1 if url1 < url2, 1 if url1 > url2, and 0 if they are equal
     """
     if url1 < url2:
       return -1
@@ -120,6 +120,9 @@ def main():
         print("Source Unique: " + str(source_urls[url] == 1))
         print("Canonicalized URL unique: " + str(canonized_urls[can_url] == 1))
     else:
+      '''
+      For unit tests.
+      '''
       if opts.test == "canonicalizer":
         for url in unsorted:
           print("Source: " + url)

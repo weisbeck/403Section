@@ -2,10 +2,10 @@ Exercise 4 for CSE 403 quiz section.
 - Peter Weisbeck
 - USAGE: url_validator.py -f [FILE]
 - OPTIONAL TESTING: url_validator.py -f [FILE] -t [canonicalizer, comparator, or validator]
-- Regex for validation credit: http://mathiasbynens.be/demo/url-regex
-- Module containing the canonicalizer I used credit: https://github.com/scrapy/scrapy
+- Regex for url validation credit: http://mathiasbynens.be/demo/url-regex (the one by @diegoperini)
+- Module containing the url canonicalizer I used credit: https://github.com/scrapy/scrapy
 
-The following URL validation design is a modified form of my team (https://github.com/caylan/403Section/wiki/URL-Validation) design. My implementation differences are noted.
+The following URL validation design is a modified form of my team (https://github.com/caylan/403Section/wiki/URL-Validation) design. My implementation differences are noted. The code implementation itself if a modified version of the team's url sorting code to handle the specifications of this exercise.
 
 URL Validation
 - The URL sorter works fine with sorting strings, but the algorithms have no way of telling whether the strings being sorted are valid URLs. Our URL validator should help address that issue. The choices made for URL validation and normalization were for the sake of time reduction (finding code that's already been written to address our needs) and tailoring it to our own use.
@@ -36,7 +36,7 @@ So my definition of a canonical form aligns with theirs as defined in their func
 """
 
 Defining a canonicalizer
-- The canonicalizer module I used can be found here: https://github.com/scrapy/scrapy/blob/master/scrapy/utils/url.py
+- The canonicalizer function I used can be found here: https://github.com/scrapy/scrapy/blob/master/scrapy/utils/url.py
 
 Defining a comparator operator for URLs (<, >, ==)
 - Comparisons performed on URLs will match the results of string comparisons.

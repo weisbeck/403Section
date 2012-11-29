@@ -4,7 +4,7 @@ Exercise 4 for CSE 403 quiz section.
 - OPTIONAL TESTING: url_validator.py -f [FILE] -t [canonicalizer, comparator, or validator]
 - Regex for url validation (credit): http://mathiasbynens.be/demo/url-regex (the one by @diegoperini)
 - Module containing the url canonicalizer I used (credit): https://github.com/scrapy/scrapy
-	- Specific file containing canonicalizer function: https://github.com/scrapy/scrapy/blob/master/scrapy/utils/url.py
+	- Specific file containing canonicalizer function (canonicalize_url): https://github.com/scrapy/scrapy/blob/master/scrapy/utils/url.py
 
 The following URL validation design is a modified form of my team (https://github.com/caylan/403Section/wiki/URL-Validation) design. My implementation differences are noted. The code implementation itself if a modified version of the team's url sorting code to handle the specifications of this exercise.
 

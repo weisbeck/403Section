@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Usage: urlvalidator.py -f [FILE]
+Usage: url_validator.py -f [FILE]
 
 https://github.com/scrapy/scrapy
 """
@@ -38,6 +38,8 @@ def controller():
                           usage='%prog -f [FILE]')
   p.add_option('--file', '-f', dest="filename",
                help="The FILE from which we will read", metavar="FILE")
+  p.add_option('--test', '-t', dest="test",
+               help="The type of test we will perform")
   (opts, args) = p.parse_args()
   return (p, opts, args)
 
@@ -62,7 +64,7 @@ def canonicalizer(url):
     """
     return canonicalize_url(url)
 
-def comparator (url1, url2):
+def comparator(url1, url2):
     """
     Since each URL is a string, will just use the built in comparator for strings.
     Returns -1 if 1 < 2, 1 if 1 > 2, and 0 if they are equal
@@ -96,27 +98,44 @@ def main():
     '''
     Builds the list of source and normalized urls, and then runs a checklist against each url.
     '''
-    canonized_urls = {}
-    source_urls = {}
-    for url in unsorted:
+    if not opts.test:
+      canonized_urls = {}
+      source_urls = {}
+      for url in unsorted:
         if url in source_urls:
-            source_urls[url] += 1
+          source_urls[url] += 1
         else:
-            source_urls[url] = 1
-        
+          source_urls[url] = 1
         can_url = canonicalizer(url)
         if can_url in canonized_urls:
-            canonized_urls[can_url] += 1
+          canonized_urls[can_url] += 1
         else:
-            canonized_urls[can_url] = 1
-    
-    for url in unsorted:
-      print("Source: " + url)
-      print("Valid: " + str(validator(url)))
-      can_url = canonicalizer(url)
-      print("Canonical: " + can_url)
-      print("Source Unique: " + str(source_urls[url] == 1))
-      print("Canonicalized URL unique: " + str(canonized_urls[can_url] == 1))
+          canonized_urls[can_url] = 1
+      
+      for url in unsorted:
+        print("Source: " + url)
+        print("Valid: " + str(validator(url)))
+        can_url = canonicalizer(url)
+        print("Canonical: " + can_url)
+        print("Source Unique: " + str(source_urls[url] == 1))
+        print("Canonicalized URL unique: " + str(canonized_urls[can_url] == 1))
+    else:
+      if opts.test == "canonicalizer":
+        for url in unsorted:
+          print("Source: " + url)
+          can_url = canonicalizer(url)
+          print("Canonical: " + can_url)
+      elif opts.test == "comparator":
+        for url1 in unsorted:
+          for url2 in unsorted:
+            print("Source1: " + url1)
+            print("Source2: " + url2)
+            print("Comparator: " + str(comparator(url1, url2)))
+      elif  opts.test == "validator":
+        for url in unsorted:
+          print("Source: " + url)
+          print("Valid: " + str(validator(url)))
+          
   except IOError as e:
     handle_io_exception(output, e)
 
